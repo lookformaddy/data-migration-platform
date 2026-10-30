@@ -1,0 +1,39 @@
+{
+  "src_customers": [
+    {
+      "id": 1,
+      "full_name": " Ada Lovelace ",
+      "email": "ADA@example.com",
+      "signup": "2024-01-15",
+      "cents": 4999
+    },
+    {
+      "id": 2,
+      "full_name": "Grace Hopper",
+      "email": "grace@example.com",
+      "signup": "2024/02/20",
+      "cents": 1250
+    },
+    {
+      "id": 3,
+      "full_name": "Alan Turing",
+      "email": "alan@example.com",
+      "signup": "not-a-date",
+      "cents": 0
+    }
+  ],
+  "src_orders": [
+    {
+      "id": 10,
+      "customer_id": 1,
+      "amount": "$42.50",
+      "status": "PAID"
+    },
+    {
+      "id": 11,
+      "customer_id": 2,
+      "amount": "7.00",
+      "status": "pending"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "plan_id": "demo-customers-orders",
+  "steps": [
+    {
+      "depends_on": [],
+      "filter_equals": null,
+      "mappings": [
+        {
+          "coercion": "integer",
+          "default": null,
+          "required": true,
+          "source": "id",
+          "target": "customer_id",
+          "transform": "none"
+        },
+        {
+          "coercion": "trim",
+          "default": null,
+          "required": true,
+          "source": "full_name",
+          "target": "name",
+          "transform": "none"
+        },
+        {
+          "coercion": "lower",
+          "default": null,
+          "required": true,
+          "source": "email",
+          "target": "email",
+          "transform": "none"
+        },
+        {
+          "coercion": "date",
+          "default": null,
+          "required": false,
+          "source": "signup",
+          "target": "signup_date",
+          "transform": "none"
+        },
+        {
+          "coercion": "decimal",
+          "default": null,
+          "required": false,
+          "source": "cents",
+          "target": "lifetime_value",
+          "transform": "cents_to_units"
+        }
+      ],
+      "primary_key": "customer_id",
+      "source_table": "src_customers",
+      "step_id": "customers",
+      "target_table": "customers",
+      "validations": [
+        {
+          "allowed": null,
+          "column": "email",
+          "kind": "regex",
+          "max_value": null,
+          "min_value": null,
+          "pattern": "^[^@]+@[^@]+\\.[^@]+$",
+          "sample_size": 100
+        }
+      ]
+    },
+    {
+      "depends_on": [
+        "customers"
+      ],
+      "filter_equals": null,
+      "mappings": [
+        {
+          "coercion": "integer",
+          "default": null,
+          "required": true,
+          "source": "id",
+          "target": "order_id",
+          "transform": "none"
+        },
+        {
+          "coercion": "integer",
+          "default": null,
+          "required": true,
+          "source": "customer_id",
+          "target": "customer_id",
+          "transform": "none"
+        },
+        {
+          "coercion": "decimal",
+          "default": null,
+          "required": false,
+          "source": "amount",
+          "target": "amount",
+          "transform": "strip_currency"
+        },
+        {
+          "coercion": "lower",
+          "default": null,
+          "required": false,
+          "source": "status",
+          "target": "status",
+          "transform": "none"
+        }
+      ],
+      "primary_key": "order_id",
+      "source_table": "src_orders",
+      "step_id": "orders",
+      "target_table": "orders",
+      "validations": [
+        {
+          "allowed": null,
+          "column": "amount",
+          "kind": "range",
+          "max_value": null,
+          "min_value": 0.0,
+          "pattern": null,
+          "sample_size": 100
+        }
+      ]
+    }
+  ]
+}
